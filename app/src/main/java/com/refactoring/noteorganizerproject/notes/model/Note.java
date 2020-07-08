@@ -1,4 +1,4 @@
-package com.refactoring.noteorganizerproject.notes;
+package com.refactoring.noteorganizerproject.notes.model;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
