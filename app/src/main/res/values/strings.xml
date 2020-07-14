@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">NoteOrganizerProject</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_notes">Notes</string>
+    <string name="title_todo">Todos</string>
+    <string name="title_settings">Settings</string>
 </resources>
