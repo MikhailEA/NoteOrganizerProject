@@ -1,4 +1,6 @@
-package com.refactoring.noteorganizerproject.notes.notes_list_fragment.presenter;
+package com.refactoring.noteorganizerproject;
 
 public interface BasePresenter {
+    default void notifyDatasetChanged(int messageId) {};
+    default void notifyItemChanged(int position) {}
 }
