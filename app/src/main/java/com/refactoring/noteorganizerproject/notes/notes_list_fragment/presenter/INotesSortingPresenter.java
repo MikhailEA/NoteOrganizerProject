@@ -1,4 +1,4 @@
-package com.refactoring.noteorganizerproject.notes.notes_list_fragment.view.recycler;
+package com.refactoring.noteorganizerproject.notes.notes_list_fragment.presenter;
 
 public interface INotesSortingPresenter {
     void enableSort();
@@ -6,4 +6,7 @@ public interface INotesSortingPresenter {
 
     void sortByDate();
     void sortByTitle();
+    void sortByDefault();
+
+    void searchNotes(String whatToSearch);
 }
