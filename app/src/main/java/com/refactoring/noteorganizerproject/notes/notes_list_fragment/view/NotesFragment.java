@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class NotesFragment extends NotesFragmentInitialize {
     private final String CLASS_TAG = "NotesFragment";
@@ -19,7 +20,20 @@ public class NotesFragment extends NotesFragmentInitialize {
         super.onCreateView(inflater, container, savedInstanceState);
     }
 
-    private void initPresenter(NotesFragment notesFragment) {
-        presenter = new NotesPresenter(fragment);
+    public void notifyDataChaged() {
+        RecyclerView.Adapter adapter = recyclerView.getAdapter();
+        if (adapter != null)
+            adapter.notifyDataSetChanged();
     }
+
+    public void setSortLayoutVisibility(boolean isVisible) {
+        sortNotes.setChecked(isVisible);
+        sortLayout.setVisibility(isVisible ? View.VISIBLE : View.GONE);
+    }
+
+    public void setExtraOptionsLayoutVisibility(boolean isVisible) {
+        extraOptionsLayout.setVisibility(isVisible ? View.VISIBLE : View.GONE);
+    }
+
+
 }
