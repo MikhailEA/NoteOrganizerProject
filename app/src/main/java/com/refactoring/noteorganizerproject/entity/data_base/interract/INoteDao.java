@@ -1,7 +1,5 @@
 package com.refactoring.noteorganizerproject.entity.data_base.interract;
 
-import android.content.SharedPreferences;
-
 import com.refactoring.noteorganizerproject.BasePresenter;
 import com.refactoring.noteorganizerproject.notes.model.Note;
 
