@@ -2,7 +2,10 @@ package com.refactoring.noteorganizerproject.notes.model;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+@Entity
 public class Note {
     public long id;
     public String title;

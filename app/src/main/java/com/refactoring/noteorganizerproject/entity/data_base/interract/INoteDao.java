@@ -1,12 +1,46 @@
 package com.refactoring.noteorganizerproject.entity.data_base.interract;
 
+import com.refactoring.noteorganizerproject.BasePresenter;
 import com.refactoring.noteorganizerproject.notes.model.Note;
+
+import java.util.Comparator;
 
 public interface INoteDao {
     void saveNote(Note note);
     void updateNote(Note note);
     void deleteNote(Note note);
 
-    
+    /**
+     * Get all notes from database and notify recycler about data changed
+     * @param presenter - base presenter for recycler {@link BasePresenter}
+     */
+
+    void getFromDB(BasePresenter presenter);
+    void getNote(long id, BasePresenter presenter);
+    void deleteSelectedNote(BasePresenter presenter, Note note);
+    void deleteSelectedNotes(BasePresenter presenter);
+    void search(BasePresenter presenter, String what);
+
+    /**
+     * Migrate notes to .txt format and notify about it
+     * @param presenter - base presenter for recycler {@link BasePresenter}
+     */
+
+    void migrate(BasePresenter presenter);
+    void migrate(Note note, BasePresenter presenter);
+    void migrateSelected(BasePresenter presenter);
+    void syncDataWithStorage();
+
+    SharedPreferencesManager getAppSettings();
+    void unsubscribe();
+
+    Note getNote();
+    Note getNoteByPosition(int position);
+    Integer size();
+    void sortNotes(BasePresenter presenter, Comparator comparator);
+
+    boolean wasSelected(Note note);
+    void selectNote(Note note);
+    void clearSelected();
 
 }
