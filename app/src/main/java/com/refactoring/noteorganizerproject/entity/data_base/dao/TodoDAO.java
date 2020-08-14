@@ -13,7 +13,7 @@ import java.util.List;
 import io.reactivex.Single;
 
 @Dao
-public interface TodoDao {
+public interface TodoDAO {
     @Query("SELECT * FROM Todo WHERE parentId IS NULL")
     Single<List<Todo>> getAll();
 
