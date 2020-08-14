@@ -9,7 +9,7 @@ import android.os.Environment;
 import androidx.room.Room;
 
 import com.refactoring.noteorganizerproject.entity.shared_prefs.SharedPreferencesManager;
-import com.refactoring.noteorganizerproject.notifications.Alarm;
+import com.refactoring.noteorganizerproject.todos.notifications.Alarm;
 
 import java.io.File;
 
