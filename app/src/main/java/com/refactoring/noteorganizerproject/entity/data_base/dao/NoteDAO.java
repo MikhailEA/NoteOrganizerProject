@@ -13,7 +13,7 @@ import java.util.List;
 import io.reactivex.Single;
 
 @Dao
-public interface NoteDao {
+public interface NoteDAO {
     @Query("SELECT * FROM NOTE")
     Single<List<Note>> getAll();
 
