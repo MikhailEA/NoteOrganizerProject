@@ -39,6 +39,10 @@ public class AppConfig extends Application {
    public static AppConfig getInstance() { return instance; }
    public SharedPreferencesManager getAppSettings() {return appSettings; }
 
+    public DataBase getDatabase() {
+        return database;
+    }
+
    private void createDirectory() {
        System.out.println("CREATING DIR");
        File storageDir = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
@@ -53,7 +57,4 @@ public class AppConfig extends Application {
 
    public Alarm getAlarm() { return alarm; }
 
-    public DataBase getDatabase() {
-       return database;
-    }
 }
