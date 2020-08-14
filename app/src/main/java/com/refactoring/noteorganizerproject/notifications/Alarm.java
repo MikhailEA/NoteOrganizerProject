@@ -1,4 +1,4 @@
-package com.refactoring.noteorganizerproject.entity;
+package com.refactoring.noteorganizerproject.notifications;
 
 public class Alarm {
 }
