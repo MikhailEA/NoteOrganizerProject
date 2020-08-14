@@ -1,6 +1,7 @@
 package com.refactoring.noteorganizerproject.entity.data_base.interract;
 
 import com.refactoring.noteorganizerproject.BasePresenter;
+import com.refactoring.noteorganizerproject.entity.shared_prefs.SharedPreferencesManager;
 import com.refactoring.noteorganizerproject.notes.model.Note;
 
 import java.util.Comparator;
