@@ -1,4 +1,8 @@
 package com.refactoring.noteorganizerproject.todos.todos_faragment.presenter;
 
-public interface ITodoPresenter {
+import com.refactoring.noteorganizerproject.BasePresenter;
+
+public interface ITodoPresenter extends BasePresenter {
+    void getTodos();
+
 }
