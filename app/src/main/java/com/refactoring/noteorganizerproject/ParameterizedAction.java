@@ -1,4 +1,5 @@
 package com.refactoring.noteorganizerproject;
 
-public class ParameterizedAction {
+public interface ParameterizedAction {
+    void doAction(String s);
 }

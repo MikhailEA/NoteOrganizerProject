@@ -1,4 +1,5 @@
 package com.refactoring.noteorganizerproject;
 
-public class Action {
+public interface Action {
+    void doAction();
 }
