@@ -1,7 +1,144 @@
 <resources>
-    <string name="app_name">NoteOrganizerProject</string>
+    <string name="app_name">NoteOrganizer</string>
+    <string name="app_version">2.1.0</string>
+
+    <string name="title_activity_main">MainActivity</string>
     <string name="action_settings">Settings</string>
-    <string name="title_notes">Notes</string>
-    <string name="title_todo">Todos</string>
+    <string name="delete_hint">Sure to delete item?</string>
+    <string name="negative">No</string>
+    <string name="positive">Yes</string>
+    <string name="understand">Understand</string>
+    <string name="empty_body_hint">This item is empty! Could not be saved</string>
+
+    <!--    PASSWORD ACTIVITY   -->
+    <string name="wrong_password_hint">You have entered the wrong password. Please re-enter it again.</string>
+    <string name="wrong_password">Wrong password</string>
+    <string name="password_input_hint">Input 4 symbols or more</string>
+    <string name="password_activity_title">Enter password</string>
+    <string name="remember_or_reenter_password">
+        This password is used to enter the app. It can\'t be replaced with another after confirmation.\n\nDo you confirm it or want to input another?
+    </string>
+    <string name="confirm">Confirm</string>
+    <string name="reenter">Re-enter</string>
+
+    <!--    SETTINGS FRAGMENT   -->
     <string name="title_settings">Settings</string>
+    <string name="app_theme_hint">Select theme for app</string>
+    <string name="dark_theme_hint">Dark mode</string>
+    <string name="light_theme_hint">Light mode</string>
+    <string name="storage_sync_hint">Synchronization with storage</string>
+    <string name="last_update_hint">Last update: </string>
+    <string name="not_implemented_hint">not implemented</string>
+    <string name="not_sync">not synchronized</string>
+    <string name="clean_notes_cache_hint">Clean notes cache</string>
+    <string name="cache_size_hint">Cache size: </string>
+    <string name="clean">clean</string>
+    <string name="clean_todos_cache_hint">Clean todos cache</string>
+    <string name="migrate_notes_hint">Save all notes to .txt format</string>
+    <string name="migrated_notes_dir_path_hint">dir: </string>
+    <string name="help_hint">Help</string>
+    <string name="cleaned_hint">Cache was cleaned</string>
+    <string name="todos_cache_size_prefix"> done</string>
+    <string name="info_sync_with_storage">
+        Pressing the sync button we will synchronize your notes from telephone storage. To see the proper way to name the notes in .txt format click \"Help\" - \"How to name notes\"
+    </string>
+    <string name="info_clean_notes_cashe">
+        Pressing delete you will clean all your notes from mobile storage. All synchronized notes will remain in database.
+    </string>
+    <string name="info_clean_todos_cashe">
+        Pressing delete you will clean all DONE todo from app. Other todo will remain in database.
+    </string>
+    <string name="info_migrate_to_txt">
+         By pressing the transfer button, you will transfer all notes in text format (.txt) to the phone’s memory. The path is specified in the description. After this step, you can change them on the computer.
+         \n\nAttention!!!\n\n
+         In order to correctly save the note from the computer, it is important to correctly name it. You will find how to do it correctly in the \"Help\" section - \"How to save a note from the computer\"
+     </string>
+    <string name="tutorial_hint">Enable tutorial for note adding</string>
+    <string name="enable_password">To enter the password run the application again.</string>
+    <string name="info_enable_password">Password is used for safely entering this app.</string>
+    <string name="reset_password_hint">Do you really want to disable password?</string>
+    <string name="enter_password_hint">Do you really want to enable password?</string>
+    <string name="password_enable_hint">Enable password on app entering</string>
+
+
+    <!--    NOTES FRAGMENT   -->
+    <string name="title_notes">Notes</string>
+    <string name="sort_by_hint">Sort by:</string>
+    <string name="chip_sort_by_date">By date</string>
+    <string name="chip_sort_by_title">By title</string>
+    <string name="migrated_hint">Data was saved as TXT files. Way to directory can be find in settings.</string>
+    <string name="choose_title_hint">Choose notes</string>
+    <string name="saved_note_hint">Your note was saved!</string>
+    <string name="deleted_note_hint">Your note was deleted!</string>
+    <string name="header_sample">Trip to London</string>
+    <string name="subheader_sample">
+            the capital and largest city of the United Kingdom of Great Britain and Northern Ireland. Administratively forms the region of England Greater London, divided into 33 self-governing territories. The population is 8 908 081 people [2] (2018) is the third [4] largest city in Europe. It forms the agglomeration Greater London and the larger metropolitan area, which are the EU population by the second urban and first regional agglomerations, respectively. Located in the southeast of the island of Great Britain, on a plain at the mouth of the Thames, near the North Sea. The main political, economic and cultural center of the United Kingdom.
+        </string>
+    <string name="search_view_hint">Search for notes</string>
+    <string name="wrong_note_name_hint">Something is wrong with name. Check it, please, there should not be underline characters (\"_\")</string>
+
+    <!--    TODOS FRAGMENT   -->
+    <string name="title_todo">Todos</string>
+    <string name="missed_todo_hint">Missed</string>
+    <string name="current_todo_hint">Current</string>
+    <string name="done_todo_hint">Done</string>
+    <string name="saved_todo_hint">Your todo was saved</string>
+    <string name="todo_title_hint">Todo title</string>
+    <string name="todo_description_hint">Description</string>
+    <string name="calendar">Choose date</string>
+    <string name="clock">Chose time</string>
+
+
+    <!--    SINGLE NOTE ACTIVITY-->
+    <string name="delete">Delete</string>
+    <string name="save">Save</string>
+    <string name="note_title_hint">Title</string>
+    <string name="note_body_hint">Type the note here</string>
+    <string name="exit">Exit the screen</string>
+    <string name="calculator">Calculator</string>
+    <string name="migrate">Save to .txt</string>
+    <string name="save_before_exit_hint">Do you want to save before exit?</string>
+    <string name="share">Share</string>
+    <string name="send_to">Share your note..</string>
+    <string name="limit_symbol_error">Imported text have too much symbols</string>
+    <string name="cancel">Cancel</string>
+
+    <!--    CALCULATOR FRAGMENT -->
+    <string name="back_space"><![CDATA[<--]]></string>
+    <string name="left_bracket">(</string>
+    <string name="right_bracket">)</string>
+    <string name="clear">C</string>
+
+    <!--    HELP ACTIVITY   -->
+    <string name="help_how_to_name_notes_tv">How to name notes?</string>
+    <string name="help_how_to_name_notes_tv_subheader">When you create them on PC</string>
+    <string name="how_to_name_note">
+        \t\tWhen you create a note on PC, It\'s very important to name it correctly.\n\n
+        \t\tThe name should begin with title, without underline symbols (\"_\"), because it is used like a separator symbol.\n
+        \t\tNext you can see the numbers - it\'s the date of note creation. You can write it in next format:
+        dd-mm-yyyy. For example, the name of note: Best places of New York_12-12-2020\n\n
+        \t\tThis is the note with title \"Best places of New York\", created at December,12 2020
+    </string>
+    <string name="where_to_save_notes_tv">Where to save notes?</string>
+    <string name="where_to_save_notes_tv_subheader">@string/help_how_to_name_notes_tv_subheader</string>
+    <string name="where_to_save_note">
+        \t\tThe settings indicate the path where your notes are saved. To check that they are saved correctly, click on the icon
+        phone opposite the phrase \"Save all notes to .txt format\". Next, follow these steps:\n
+        \t\t1. Connect the phone to the computer via the charging cable\n
+        \t\t2. Select \"USB Mode\" - \"File Transfer\"\n
+        \t\t3. On the computer, go to My Computer (This Computer) and open your phone.\n
+        \t\t4. Next, follow the path specified in the settings. So, for example, if the path \"Android/data/files\" is specified,
+        then you need to go to the Android -> data -> files folder.
+    </string>
+    <string name="button_memory">M</string>
+
+    <string name="close_spotlight">close</string>
+    <string name="next_spotlight">next</string>
+    <string name="tutorial_close">
+        Do you want to close tutorial?
+        \n\n
+        You can re-watch tutorial by enabling it in Settings.
+    </string>
 </resources>
+
+
