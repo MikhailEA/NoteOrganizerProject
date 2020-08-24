@@ -20,7 +20,18 @@ public class PasswordActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setAppTheme();
         setContentView(R.layout.activity_password);
+
+        presenter = new PasswordPresenter(this);
+
+        initUI();
     }
+
+    private void initUI() {
+        passwordInputLayout = findViewById(R.id.password_textInputLayout);
+        confirm = findViewById(R.id.confirm_password);
+        confirm.setOnClickListener(v -> presenter.checkPassword());
+    }
+
 
 
 }

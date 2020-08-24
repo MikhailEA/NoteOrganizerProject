@@ -32,7 +32,7 @@
         android:id="@+id/team_copyright"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="by Reliableteam \u00A9 2020"
+        android:text="NoteOrganizerProject\u00A9 2020"
         style="@style/TextView.SubHeader"
         app:layout_anchorGravity="center|bottom"
         android:layout_gravity="center|bottom"
