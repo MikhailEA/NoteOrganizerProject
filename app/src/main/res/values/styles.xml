@@ -5,13 +5,13 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <!--    sub styles      -->
+<!--    sub styles      -->
 
-    <!--    TEXT VIEWS  -->
+<!--    TEXT VIEWS  -->
     <style name="TextView">
         <item name="android:fontFamily">@font/roboto</item>
         <item name="paddingStart">4dp</item>
@@ -50,15 +50,29 @@
         <item name="android:textColor">@color/colorAccent</item>
     </style>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        
-        <item name="android:statusBarColor">#ffffff</item>
-        <item name="bottomSheetDialogTheme">@style/BottomSheetDialogStyle.Light</item>
+<!--    BOTTOM SHEET DIALOG STYLE -->
+    <style name="BottomSheetDialogStyle.Light" parent="AppBottomSheetDialogTheme.Light">
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+    <style name="BottomSheetDialogStyle.Dark" parent="AppBottomSheetDialogTheme.Dark">
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">#ff000000</item>
+    </style>
+    <style name="AppBottomSheetDialogTheme.Dark" parent="Theme.Design.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="bottomSheetStyle">@style/BottomSheet</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:backgroundTint">@color/colorBottomSheetSurfaceDark</item>
+    </style>
+    <style name="AppBottomSheetDialogTheme.Light" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="bottomSheetStyle">@style/BottomSheet</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+    <style name="BottomSheet" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bottom_sheet</item>
     </style>
 
     <!--    DIVIDER     -->
@@ -74,7 +88,18 @@
         <item name="android:alpha">0.12</item>
     </style>
 
-    <!--     Dark application theme. -->
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+<!--         Customize your theme here.-->
+        <item name="elevationOverlayEnabled">false</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">#ffffff</item>
+        <item name="bottomSheetDialogTheme">@style/BottomSheetDialogStyle.Light</item>
+    </style>
+<!--     Dark application theme. -->
     <style name="AppThemeDark" parent="Theme.MaterialComponents.NoActionBar">
         <item name="colorSurface">@color/colorSurfaceDark</item>
         <item name="background">@color/colorSurfaceDark</item>
@@ -94,31 +119,6 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="bottomSheetDialogTheme">@style/BottomSheetDialogStyle.Dark</item>
-    </style>
-
-    <!--    BOTTOM SHEET DIALOG STYLE -->
-    <style name="BottomSheetDialogStyle.Light" parent="AppBottomSheetDialogTheme.Light">
-        <item name="android:windowLightStatusBar">true</item>
-    </style>
-    <style name="BottomSheetDialogStyle.Dark" parent="AppBottomSheetDialogTheme.Light">
-        <item name="android:windowLightStatusBar">false</item>
-        <item name="android:statusBarColor">#ff000000</item>
-    </style>
-    <style name="AppBottomSheetDialogTheme.Dark" parent="Theme.Design.BottomSheetDialog">
-        <item name="android:windowIsFloating">false</item>
-        <item name="android:windowSoftInputMode">adjustResize</item>
-        <item name="bottomSheetStyle">@style/BottomSheet</item>
-        <item name="android:textColor">?attr/colorOnSurface</item>
-        <item name="android:backgroundTint">@color/colorBottomSheetSurfaceDark</item>
-    </style>
-    <style name="AppBottomSheetDialogTheme.Light" parent="Theme.Design.Light.BottomSheetDialog">
-        <item name="android:windowIsFloating">false</item>
-        <item name="android:windowSoftInputMode">adjustResize</item>
-        <item name="bottomSheetStyle">@style/BottomSheet</item>
-        <item name="android:textColor">?attr/colorOnSurface</item>
-    </style>
-    <style name="BottomSheet" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@drawable/bottom_sheet</item>
     </style>
 
     <!--    BUTTONS     -->
@@ -142,5 +142,4 @@
         <item name="iconTint">@drawable/chooser_current_statelist</item>
         <item name="strokeColor">@drawable/chooser_current_statelist_stroke_color</item>
     </style>
-
 </resources>
