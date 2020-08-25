@@ -15,4 +15,20 @@ public class PasswordPresenter {
         appSettings = AppConfig.getInstance().getAppSettings();
         oldPassword = appSettings.getLocalPassword();
     }
+
+    public void checkPassword() {
+        if (isAppFirstEnter()) {
+            appFirstEnter();
+        } else {
+            comparePasswords();
+        }
+    }
+
+    private void appFirstEnter() {
+
+    }
+
+    private boolean isAppFirstEnter() {
+        return oldPassword.equals("");
+    }
 }
