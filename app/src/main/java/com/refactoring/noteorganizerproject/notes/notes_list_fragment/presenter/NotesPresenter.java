@@ -16,6 +16,8 @@ public class NotesPresenter implements INotesPresenter, INotesSortingPresenter {
     private SharedPreferencesManager appSettings;
     private NotesListenerProvider listenerProvider;
 
+    
+
 
 
 }
