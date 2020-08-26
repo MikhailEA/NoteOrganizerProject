@@ -3,7 +3,11 @@ package com.refactoring.noteorganizerproject.notes.notes_list_fragment.presenter
 import com.refactoring.noteorganizerproject.entity.data_base.impl.NoteDaoImpl;
 import com.refactoring.noteorganizerproject.entity.data_base.interract.INoteDao;
 import com.refactoring.noteorganizerproject.entity.shared_prefs.SharedPreferencesManager;
+import com.refactoring.noteorganizerproject.notes.model.Note;
 import com.refactoring.noteorganizerproject.notes.notes_list_fragment.view.NotesFragment;
+import com.refactoring.noteorganizerproject.utils.SortListComparator;
+
+import java.util.Comparator;
 
 public class NotesPresenter implements INotesPresenter, INotesSortingPresenter {
     private String CLASS_TAG = "RecyclerViewPresenter";
@@ -14,9 +18,20 @@ public class NotesPresenter implements INotesPresenter, INotesSortingPresenter {
 
     private NotesFragment fragmentView;
     private SharedPreferencesManager appSettings;
-    private NotesListenerProvider listenerProvider;
+    private NotesListenerProvider listenersProvider;
 
-    
+    enum State { MULTI_SELECTION, SINGLE_SELECTION }
+    private State state = State.SINGLE_SELECTION;
+
+    private Comparator<Note> comparator = SortListComparator.getDateComparator();
+
+    public NotesPresenter(NotesFragment view) {
+        this.fragmentView = view;
+        appSettings = noteDao.getAppSettings();
+        listenersProvider = new NotesListenersProvider(this);
+    }
+
+
 
 
 

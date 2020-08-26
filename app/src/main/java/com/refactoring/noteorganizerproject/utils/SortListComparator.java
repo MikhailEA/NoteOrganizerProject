@@ -1,4 +1,4 @@
-package com.refactoring.noteorganizerproject.notes.notes_list_fragment.presenter;
+package com.refactoring.noteorganizerproject.utils.;
 
 public class SortListComparator {
 }
