@@ -18,7 +18,7 @@ public class NotesPresenter implements INotesPresenter, INotesSortingPresenter {
 
     private NotesFragment fragmentView;
     private SharedPreferencesManager appSettings;
-    private NotesListenerProvider listenersProvider;
+    private NotesListenersProvider listenersProvider;
 
     enum State { MULTI_SELECTION, SINGLE_SELECTION }
     private State state = State.SINGLE_SELECTION;
@@ -29,6 +29,13 @@ public class NotesPresenter implements INotesPresenter, INotesSortingPresenter {
         this.fragmentView = view;
         appSettings = noteDao.getAppSettings();
         listenersProvider = new NotesListenersProvider(this);
+    }
+
+    public void getNotes() {
+        String searchText = fragmentView.getSeachText();
+        if (searchText.equals("")) {
+            noteDao.getFromDB(this);
+        }
     }
 
 

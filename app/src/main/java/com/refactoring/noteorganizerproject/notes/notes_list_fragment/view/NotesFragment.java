@@ -36,4 +36,9 @@ public class NotesFragment extends NotesFragmentInitialize {
     }
 
 
+    public String getSeachText() {
+        if (searchNoteTv == null)
+            return "";
+        return searchNoteTv.getText().toString();
+    }
 }
