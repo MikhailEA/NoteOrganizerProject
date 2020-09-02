@@ -25,6 +25,8 @@ public class MigrationManager {
     public void saveToDir(Note note) {
         if (note.isEmpty())
             return;
+
+        String date = com.refactoring.noteorganizerproject.utils.DateUtils.stringToDate
     }
 
     public List<Note> getNotesFromStorage() {
@@ -60,7 +62,7 @@ public class MigrationManager {
         if (fileName.length == 2)
             date = fileName[1];
         date = date.replace("-", "/");
-        return DateUtils.stringToDate("", date);
+        return DateUtils.string("", date);
     }
 
     private String getTitle(File f) {
