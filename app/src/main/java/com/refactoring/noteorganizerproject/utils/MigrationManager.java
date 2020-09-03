@@ -1,16 +1,17 @@
 package com.refactoring.noteorganizerproject.utils;
 
-import android.text.format.DateUtils;
-
 import com.refactoring.noteorganizerproject.entity.shared_prefs.SharedPreferencesManager;
 import com.refactoring.noteorganizerproject.notes.model.Note;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -26,19 +27,23 @@ public class MigrationManager {
         if (note.isEmpty())
             return;
 
-        String date = com.refactoring.noteorganizerproject.utils.DateUtils.stringToDate
+        String date = DateUtils.dateToString(note.dataTime).split(" ")[0].replace("/", "-");
+        File f = new File(appSettings.getAppDataDirectory(), note.title + "_" + date + ".txt");
+        f.setWritable(true);
+        try {
+            f.createNewFile();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(f));
+            writer.write(note.body);
+
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public List<Note> getNotesFromStorage() {
-        File[] notesInDir = getFilesPathsFromDir();
-        List<Note> noteList = new ArrayList<>();
-        if (notesInDir != null) {
-            for (File f : notesInDir) {
-                Note note = readNote(f);
-                if (note != null)
-                    noteList.add(Note)
-            }
-        }
+    private File[] getFilesPathsFromDir() {
+        File dir = new File(appSettings.getAppDataDirectory());
+        return dir.listFiles();
     }
 
     private Note readNote(File f) {
@@ -62,7 +67,8 @@ public class MigrationManager {
         if (fileName.length == 2)
             date = fileName[1];
         date = date.replace("-", "/");
-        return DateUtils.string("", date);
+
+        return DateUtils.stringToDate("", date);
     }
 
     private String getTitle(File f) {
@@ -96,11 +102,6 @@ public class MigrationManager {
         return !pattern.matcher(date).matches();
     }
 
-    private File[] getFilesPathsFromDir() {
-        File dir = new File(appSettings.getAppDataDirectory());
-        return dir.listFiles();
-    }
-
     private BufferedReader getFileReader(String uri) {
         File file = new File(uri);
         BufferedReader br = null;
@@ -112,7 +113,18 @@ public class MigrationManager {
         return br;
     }
 
-    private get
+    public List<Note> getNotesFromStorage() {
+        File[] notesInDir = getFilesPathsFromDir();
+        List<Note> noteList = new ArrayList<>();
+        if (notesInDir != null) {
+            for (File f : notesInDir) {
+                Note note = readNote(f);
+                if (note != null)
+                    noteList.add(note);
+            }
+        }
+        return noteList;
+    }
 
 
 }
