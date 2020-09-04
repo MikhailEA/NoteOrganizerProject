@@ -17,4 +17,9 @@ public class TodosPresenter extends MvpPresenter<ITodosFragment> implements ITod
         appSettings = todoDao.getAppSettings();
     }
 
+
+    @Override
+    public void getTodos() {
+        todoDao.getTodosByState(this);
+    }
 }
