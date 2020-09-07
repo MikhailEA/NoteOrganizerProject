@@ -33,10 +33,21 @@ public class NotesPresenter implements INotesPresenter, INotesSortingPresenter {
 
     public void getNotes() {
         String searchText = fragmentView.getSeachText();
-        if (searchText.equals("")) {
+        if (searchText.equals(""))
             noteDao.getFromDB(this);
-        }
+        else
+            searchNotes(searchText);
     }
+
+    @Override
+    public void notifyDatasetChanged(int messageId) {
+        if (messageId == NO_MESSAGE)
+            fragmentView.notifyDataChaged();
+        else
+            fragmentView.showToast(messageId);
+    }
+
+
 
 
 

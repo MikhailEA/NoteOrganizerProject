@@ -11,13 +11,17 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.refactoring.noteorganizerproject.R;
 import com.refactoring.noteorganizerproject.notes.notes_list_fragment.presenter.INotesPresenter;
 import com.refactoring.noteorganizerproject.notes.notes_list_fragment.presenter.NotesPresenter;
+import com.refactoring.noteorganizerproject.notes.notes_list_fragment.view.recycler.NotesRecyclerAdapter;
+import com.refactoring.noteorganizerproject.utils.ScreenUtil;
 
 
 public class NotesFragmentInitialize extends Fragment {
@@ -42,14 +46,55 @@ public class NotesFragmentInitialize extends Fragment {
         return root;
     }
 
-    private void initRecyclerView() {
-    }
+
 
     private void initUI() {
+        initWriteNoteFab();
+        initSortLayoutAndGroup();
+        initSearchNoteLayout();
+        initExtraOptionsLayout();
+    }
+
+    private void initWriteNoteFab() {
+        writeNewNote = root.findViewById(R.id.notes_write_fab);
+        writeNewNote.setOnClickListener(v -> presenter.createNewNotes());
+    }
+
+    private void initSortLayoutAndGroup() {
+        sortLayout = root.findViewById(R.id.sort_layout);
+        sortNotes = root.findViewById(R.id.sort_notes_button);
+        sortNotes.setOnClickListener(v -> interactWithSortLayout());
+        ChipGroup sortGroup = root.findViewById(R.id.sort_group);
+        sortGroup.setOnCheckedChangeListener(presenter.getOnCheckedChangeListener());
+    }
+
+    private void initSearchNoteLayout() {
 
     }
 
-    private void initPresenter(NotesFragment notesFragment) {
+    private void initExtraOptionsLayout() {
+
+    }
+
+    private void interactWithSortLayout() {
+
+    }
+
+
+
+    private void initRecyclerView() {
+        recyclerView = root.findViewById(R.id.notes_rv);
+        int spanCount = ScreenUtil.getDisplayColumns(getActivity());
+        RecyclerView.LayoutManager manager = new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setAdapter(new NotesRecyclerAdapter(presenter));
+        recyclerView.addOnScrollListener(presenter.getRecyclerScrollListener(writeNewNote));
+
+        presenter.getNotes();
+
+    }
+
+    private void initPresenter(NotesFragment fragment) {
         presenter = new NotesPresenter(fragment);
     }
 }
