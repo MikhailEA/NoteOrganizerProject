@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 
 import androidx.annotation.NonNull;
@@ -69,10 +70,21 @@ public class NotesFragmentInitialize extends Fragment {
     }
 
     private void initSearchNoteLayout() {
+        MaterialButton clearSearch = root.findViewById(R.id.clear_search);
+        clearSearch.setOnClickListener(v -> presenter.clearSearch());
+        clearSearch.setVisibility(View.GONE);
 
+        searchNoteTv = root.findViewById(R.id.search_text_view);
+        searchNoteTv.addTextChangedListener(presenter.getTextChangeListener(clearSearch));
     }
 
     private void initExtraOptionsLayout() {
+        extraOptionsLayout = root.findViewById(R.id.extra_options_group);
+        ImageButton closeBtn = root.findViewById(R.id.close_button);
+        closeBtn.setOnClickListener(v -> presenter.disableMultiSelection());
+
+        ImageButton deleteBtn = root.findViewById(R.id.delete_button);
+        deleteBtn.setOnClickListener(v -> showConfirmation());
 
     }
 
