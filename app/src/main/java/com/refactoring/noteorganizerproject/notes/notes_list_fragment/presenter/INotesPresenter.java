@@ -23,6 +23,7 @@ public interface INotesPresenter extends BasePresenter {
     void enableMultiSelection();
     void disableMultiSelection();
     void createNewNotes();
+    void deleteNotes();
     void migrateSelectedNotes();
 
     void enableSort();
@@ -31,5 +32,6 @@ public interface INotesPresenter extends BasePresenter {
     TextWatcher getTextChangeListener(View buttonClear);
     ChipGroup.OnCheckedChangeListener getOnCheckedChangeListener();
     RecyclerView.OnScrollListener getRecyclerScrollListener(FloatingActionButton fab);
+
 
 }

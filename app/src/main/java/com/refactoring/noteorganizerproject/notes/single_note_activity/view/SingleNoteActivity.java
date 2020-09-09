@@ -1,6 +1,8 @@
-package com.refactoring.noteorganizerproject.notes.single_note_activity;
+package com.refactoring.noteorganizerproject.notes.single_note_activity.view;
 
 import android.os.Bundle;
+
+
 
 public class SingleNoteActivity extends SingleNoteActivityInitialize {
     private final String CLASS_TAG = "SingleNoteActivity";

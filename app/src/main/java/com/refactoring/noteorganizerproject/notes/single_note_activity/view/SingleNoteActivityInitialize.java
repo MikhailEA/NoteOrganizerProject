@@ -1,4 +1,4 @@
-package com.refactoring.noteorganizerproject.notes.single_note_activity;
+package com.refactoring.noteorganizerproject.notes.single_note_activity.view;
 
 import android.os.Bundle;
 import android.text.Spannable;
@@ -10,6 +10,9 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.refactoring.noteorganizerproject.BaseActivity;
+import com.refactoring.noteorganizerproject.notes.single_note_activity.calculator_fragment.view.CalculatorFragment;
+import com.refactoring.noteorganizerproject.notes.single_note_activity.presenter.SingleNotePresenter;
+import com.refactoring.noteorganizerproject.utils.TutorialSpotlight;
 
 class SingleNoteActivityInitialize extends BaseActivity {
     protected SingleNotePresenter presenter;
