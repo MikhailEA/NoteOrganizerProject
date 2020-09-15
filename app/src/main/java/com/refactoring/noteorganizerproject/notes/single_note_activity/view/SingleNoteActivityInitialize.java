@@ -9,7 +9,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 
 import com.google.android.material.textfield.TextInputEditText;
+
+import com.refactoring.noteorganizerproject.Action;
 import com.refactoring.noteorganizerproject.BaseActivity;
+import com.refactoring.noteorganizerproject.R;
 import com.refactoring.noteorganizerproject.notes.single_note_activity.calculator_fragment.view.CalculatorFragment;
 import com.refactoring.noteorganizerproject.notes.single_note_activity.presenter.SingleNotePresenter;
 import com.refactoring.noteorganizerproject.utils.TutorialSpotlight;
