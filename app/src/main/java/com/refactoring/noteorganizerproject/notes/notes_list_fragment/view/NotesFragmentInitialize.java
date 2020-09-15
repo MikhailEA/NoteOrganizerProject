@@ -49,8 +49,6 @@ public class NotesFragmentInitialize extends Fragment {
         return root;
     }
 
-
-
     private void initUI() {
         initWriteNoteFab();
         initSortLayoutAndGroup();

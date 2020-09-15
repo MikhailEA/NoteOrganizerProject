@@ -14,6 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.card.MaterialCardView;
 
+import com.refactoring.noteorganizerproject.R;
+import com.refactoring.noteorganizerproject.notes.single_note_activity.view.SingleNoteActivity;
+
 
 public class NotesFragment extends NotesFragmentInitialize {
     private final String CLASS_TAG = "NotesFragment";
@@ -24,6 +27,13 @@ public class NotesFragment extends NotesFragmentInitialize {
         super.onCreateView(inflater, container, savedInstanceState);
         return root;
     }
+
+    public void notifyDataChaged() {
+        RecyclerView.Adapter adapter = recyclerView.getAdapter();
+        if (adapter != null)
+            adapter.notifyDataSetChanged();
+    }
+
 
     public void notifyDataChanged() {
         RecyclerView.Adapter adapter = recyclerView.getAdapter();
@@ -99,4 +109,5 @@ public class NotesFragment extends NotesFragmentInitialize {
         System.out.println("RESUME");
         presenter.getNotes();
     }
+
 }

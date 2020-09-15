@@ -10,6 +10,7 @@ import com.refactoring.noteorganizerproject.utils.SortListComparator;
 import java.util.Comparator;
 
 public class NotesPresenter implements INotesPresenter, INotesSortingPresenter {
+
     private String CLASS_TAG = "RecyclerViewPresenter";
     private final int NEW_NOTE = -1;
     private final int NO_MESSAGE = 0;
@@ -32,7 +33,7 @@ public class NotesPresenter implements INotesPresenter, INotesSortingPresenter {
     }
 
     public void getNotes() {
-        String searchText = fragmentView.getSeachText();
+        String searchText = fragmentView.getSearchText();
         if (searchText.equals(""))
             noteDao.getFromDB(this);
         else
