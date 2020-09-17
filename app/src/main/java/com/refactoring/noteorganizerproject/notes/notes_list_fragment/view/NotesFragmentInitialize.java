@@ -49,6 +49,10 @@ public class NotesFragmentInitialize extends Fragment {
         return root;
     }
 
+    void initPresenter(NotesFragment fragment) {
+        presenter = new NotesPresenter(fragment);
+    }
+
     private void initUI() {
         initWriteNoteFab();
         initSortLayoutAndGroup();
@@ -58,7 +62,7 @@ public class NotesFragmentInitialize extends Fragment {
 
     private void initWriteNoteFab() {
         writeNewNote = root.findViewById(R.id.notes_write_fab);
-        writeNewNote.setOnClickListener(v -> presenter.createNewNotes());
+        writeNewNote.setOnClickListener( v -> presenter.createNewNote() );
     }
 
     private void initSortLayoutAndGroup() {
@@ -118,10 +122,6 @@ public class NotesFragmentInitialize extends Fragment {
 
         presenter.getNotes();
 
-    }
-
-    private void initPresenter(NotesFragment fragment) {
-        presenter = new NotesPresenter(fragment);
     }
 
     private void showConfirmation() {
