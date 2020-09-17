@@ -1,10 +1,12 @@
 package com.refactoring.noteorganizerproject.notes.notes_list_fragment.view;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
@@ -47,7 +49,9 @@ public class NotesFragmentInitialize extends Fragment {
         return root;
     }
 
-
+    void initPresenter(NotesFragment fragment) {
+        presenter = new NotesPresenter(fragment);
+    }
 
     private void initUI() {
         initWriteNoteFab();
@@ -58,7 +62,7 @@ public class NotesFragmentInitialize extends Fragment {
 
     private void initWriteNoteFab() {
         writeNewNote = root.findViewById(R.id.notes_write_fab);
-        writeNewNote.setOnClickListener(v -> presenter.createNewNotes());
+        writeNewNote.setOnClickListener( v -> presenter.createNewNote() );
     }
 
     private void initSortLayoutAndGroup() {
@@ -89,10 +93,24 @@ public class NotesFragmentInitialize extends Fragment {
     }
 
     private void interactWithSortLayout() {
-
+        if (sortNotes.isChecked())
+            presenter.enableSort();
+        else
+            presenter.disableSort();
     }
 
+    private void setDescriptions(View... views) {
+        for (View view : views) {
+            view.setOnLongClickListener(v -> {
+                showHint(v.getContentDescription().toString());
+                return true;
+            });
+        }
+    }
 
+    private void showHint(String hintText) {
+        Toast.makeText(getContext(), hintText, Toast.LENGTH_SHORT).show();
+    }
 
     private void initRecyclerView() {
         recyclerView = root.findViewById(R.id.notes_rv);
@@ -106,7 +124,11 @@ public class NotesFragmentInitialize extends Fragment {
 
     }
 
-    private void initPresenter(NotesFragment fragment) {
-        presenter = new NotesPresenter(fragment);
+    private void showConfirmation() {
+        AlertDialog.Builder db = new AlertDialog.Builder(getContext());
+        db.setTitle("Sure to delete item?");
+        db.setPositiveButton(R.string.positive, (dialog, which) -> presenter.deleteNotes());
+        db.setNegativeButton(R.string.negative, (dialog, which) -> dialog.dismiss());
+        db.show();
     }
 }

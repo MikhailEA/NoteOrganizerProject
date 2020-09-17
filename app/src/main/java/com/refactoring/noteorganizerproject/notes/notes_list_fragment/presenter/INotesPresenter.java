@@ -22,7 +22,8 @@ public interface INotesPresenter extends BasePresenter {
 
     void enableMultiSelection();
     void disableMultiSelection();
-    void createNewNotes();
+    void createNewNote();
+    void deleteNotes();
     void migrateSelectedNotes();
 
     void enableSort();
