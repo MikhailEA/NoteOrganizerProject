@@ -1,4 +1,4 @@
-package ru.reliableteam.noteorganizer.notes.notes_list_fragment.view.recycler;
+package com.refactoring.noteorganizerproject.notes.notes_list_fragment.view.recycler;
 
 
 import android.view.LayoutInflater;
@@ -8,10 +8,10 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import ru.reliableteam.noteorganizer.R;
-import ru.reliableteam.noteorganizer.notes.model.Note;
-import ru.reliableteam.noteorganizer.notes.notes_list_fragment.presenter.INotesPresenter;
-import ru.reliableteam.noteorganizer.utils.DateUtils;
+import com.refactoring.noteorganizerproject.R;
+import com.refactoring.noteorganizerproject.notes.model.Note;
+import com.refactoring.noteorganizerproject.notes.notes_list_fragment.presenter.INotesPresenter;
+import com.refactoring.noteorganizerproject.utils.DateUtils;
 
 /**
  * Base Adapter for recycler.

@@ -1,5 +1,7 @@
 package com.refactoring.noteorganizerproject.notes.single_note_activity.calculator_fragment.presenter;
 
+import com.refactoring.noteorganizerproject.notes.single_note_activity.calculator_fragment.model.CalculatorModel;
+
 public class CalcPresenter {
 
     private CalculatorModel calculator;

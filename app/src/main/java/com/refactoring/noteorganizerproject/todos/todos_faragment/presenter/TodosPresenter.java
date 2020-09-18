@@ -3,7 +3,7 @@ package com.refactoring.noteorganizerproject.todos.todos_faragment.presenter;
 import com.refactoring.noteorganizerproject.entity.data_base.impl.TodoDaoImpl;
 import com.refactoring.noteorganizerproject.entity.shared_prefs.SharedPreferencesManager;
 import com.refactoring.noteorganizerproject.todos.todos_faragment.TodoRequestCodes;
-import com.refactoring.noteorganizerproject.todos.todos_faragment.view.recycler.ITodosFragment;
+import com.refactoring.noteorganizerproject.todos.todos_faragment.view.ITodosFragment;
 
 import moxy.MvpPresenter;
 
@@ -17,6 +17,11 @@ public class TodosPresenter extends MvpPresenter<ITodosFragment> implements ITod
         appSettings = todoDao.getAppSettings();
     }
 
+    @Override
+    public void notifyDatasetChanged(int messageId) {
+        System.out.println("DATA CHANGED");
+        getViewState().notifyDataChanged();
+    }
 
     @Override
     public void getTodos() {

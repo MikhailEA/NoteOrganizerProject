@@ -85,12 +85,30 @@ public class NotesFragmentInitialize extends Fragment {
     private void initExtraOptionsLayout() {
         extraOptionsLayout = root.findViewById(R.id.extra_options_group);
         ImageButton closeBtn = root.findViewById(R.id.close_button);
-        closeBtn.setOnClickListener(v -> presenter.disableMultiSelection());
+        closeBtn.setOnClickListener( v -> presenter.disableMultiSelection() );
 
         ImageButton deleteBtn = root.findViewById(R.id.delete_button);
-        deleteBtn.setOnClickListener(v -> showConfirmation());
+        deleteBtn.setOnClickListener( v -> showConfirmation() );
+
+        ImageButton migrateBtn = root.findViewById(R.id.migrate_to_txt);
+        migrateBtn.setOnClickListener( v -> presenter.migrateSelectedNotes());
+
+        setDescriptions(closeBtn, deleteBtn, migrateBtn);
 
     }
+
+    private void initRecyclerView() {
+        recyclerView = root.findViewById(R.id.notes_rv);
+        int spanCount = ScreenUtil.getDisplayColumns(getActivity());
+        RecyclerView.LayoutManager manager = new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setAdapter(new NotesRecyclerAdapter(presenter));
+        recyclerView.addOnScrollListener(presenter.getRecyclerScrollListener(writeNewNote));
+
+        presenter.getNotes();
+
+    }
+
 
     private void interactWithSortLayout() {
         if (sortNotes.isChecked())
@@ -110,18 +128,6 @@ public class NotesFragmentInitialize extends Fragment {
 
     private void showHint(String hintText) {
         Toast.makeText(getContext(), hintText, Toast.LENGTH_SHORT).show();
-    }
-
-    private void initRecyclerView() {
-        recyclerView = root.findViewById(R.id.notes_rv);
-        int spanCount = ScreenUtil.getDisplayColumns(getActivity());
-        RecyclerView.LayoutManager manager = new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(manager);
-        recyclerView.setAdapter(new NotesRecyclerAdapter(presenter));
-        recyclerView.addOnScrollListener(presenter.getRecyclerScrollListener(writeNewNote));
-
-        presenter.getNotes();
-
     }
 
     private void showConfirmation() {
