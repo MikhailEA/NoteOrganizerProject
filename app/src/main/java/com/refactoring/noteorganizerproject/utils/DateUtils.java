@@ -10,6 +10,17 @@ public class DateUtils {
     private final static Long NULL_DATE = 0L;
     private final static String BEGIN_DATE_STRING = "01/01/1970";
 
+    public static boolean isDateConfigured(String date) {
+        Long dateInMills = stringToDate("", date);
+        return notEqualsToBeginDate(dateInMills) && !date.contains(BEGIN_DATE_STRING);
+    }
+    public static boolean isDateConfigured(Long dateInMills) {
+        return notEqualsToBeginDate(dateInMills);
+    }
+    private static boolean notEqualsToBeginDate(Long dateInMills) {
+        return !dateToString(dateInMills).contains(BEGIN_DATE_STRING);
+    }
+
     public static String dateToString(Long dateInMills) {
         Calendar calendar = getCalendar(dateInMills);
 
