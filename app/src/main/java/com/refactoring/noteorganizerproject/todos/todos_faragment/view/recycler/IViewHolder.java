@@ -1,5 +1,8 @@
 package com.refactoring.noteorganizerproject.todos.todos_faragment.view.recycler;
 
-public interface IViewHolder {
+import com.refactoring.noteorganizerproject.todos.model.Todo;
 
+public interface IViewHolder {
+    void setTodo(Todo todo);
+    int getPos();
 }
