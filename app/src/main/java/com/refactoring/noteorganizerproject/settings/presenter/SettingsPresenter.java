@@ -1,5 +1,6 @@
 package com.refactoring.noteorganizerproject.settings.presenter;
 
+import com.google.android.material.chip.ChipGroup;
 import com.refactoring.noteorganizerproject.BasePresenter;
 import com.refactoring.noteorganizerproject.ParameterizedAction;
 import com.refactoring.noteorganizerproject.R;
@@ -68,7 +69,6 @@ public class SettingsPresenter implements BasePresenter {
 
         return String.format("%.3f mb", space / 1024.0 / 1024.0);
     }
-
     public void getTodosCacheSize() {
         Disposable disposable = Completable.fromAction( () -> todoDao.getCacheSize(todosCacheSizeListener) )
                 .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
@@ -79,5 +79,92 @@ public class SettingsPresenter implements BasePresenter {
                         },
                         Throwable::printStackTrace
                 );
+    }
+    public void cleanTodosCache() {
+        todoDao.cleanCacheSize(todosCacheSizeListener);
+        notifyDatasetChanged(R.string.cleaned_hint);
+    }
+
+    public void cleanNotesCache() {
+        File dir = new File(appSettings.getAppDataDirectory());
+        File[] files = dir.listFiles();
+        for (File f : files)
+            f.delete();
+
+        notifyDatasetChanged(R.string.cleaned_hint);
+    }
+    @Override
+    public void notifyDatasetChanged(int messageId) {
+        getTodosCacheSize();
+        view.setNotesCacheSize(getNotesCacheSize());
+        view.showHint(messageId);
+    }
+
+    public String getAppFullDirPath() {
+        return appSettings.getAppDataDirectory();
+    }
+    public String getAppDirPath() {
+        return appSettings.getAppDataDirectory().replace("/storage/emulated/0/", "");
+    }
+
+    public void saveToTxt() {
+        noteDao.migrate(this);
+    }
+
+    public ChipGroup.OnCheckedChangeListener themeChangeListener() {
+        return new ChipGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(ChipGroup group, int checkedId) {
+                if (isRechecked(checkedId))
+                    return;
+
+                updateAppTheme(checkedId);
+
+                lastCheckedId = checkedId;
+                view.reloadActivity();
+            }
+            private boolean isRechecked(int checkedId) {
+                return checkedId == lastCheckedId;
+            }
+            private void updateAppTheme(int checkedId) {
+                int themeId = R.style.AppTheme;
+                switch (checkedId) {
+                    case R.id.light_mode_theme_selection:
+                        themeId = R.style.AppTheme;
+                        break;
+                    case R.id.dark_mode_theme_selection:
+                        themeId = R.style.AppThemeDark;
+                        break;
+                }
+                appSettings.setAppTheme(themeId);
+            }
+        };
+    }
+
+    public void makeSyncWithStorage() {
+        noteDao.syncDataWithStorage();
+        appSettings.setLastSyncDate(System.currentTimeMillis());
+        setLastSyncDate();
+    }
+
+    public void setLastSyncDate() {
+        Long date = appSettings.getLastSyncDate();
+        view.setLastSyncDate(DateUtils.isDateConfigured(date) ? DateUtils.dateToString(date) : "");
+    }
+
+    public boolean isTutorialPassed() {
+        return !appSettings.isAddingNoteForFirsTime();
+    }
+    public void enableTutorial() {
+        appSettings.setAddingNoteForFirsTime(true);
+    }
+
+    public boolean isSecurityEnabled() {
+        return appSettings.enterOnPassword();
+    }
+    public void changeSecuritySettings() {
+        appSettings.setEnterOnPassword( !appSettings.enterOnPassword() );
+        if (!appSettings.enterOnPassword())
+            appSettings.setLocalPassword("");
     }
 }

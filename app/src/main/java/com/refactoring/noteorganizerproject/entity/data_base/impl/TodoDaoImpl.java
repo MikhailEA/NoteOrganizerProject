@@ -2,7 +2,10 @@ package com.refactoring.noteorganizerproject.entity.data_base.impl;
 
 
 
+import androidx.core.app.NotificationCompat;
+
 import com.refactoring.noteorganizerproject.BasePresenter;
+import com.refactoring.noteorganizerproject.ParameterizedAction;
 import com.refactoring.noteorganizerproject.entity.AppConfig;
 import com.refactoring.noteorganizerproject.entity.data_base.DataBase;
 import com.refactoring.noteorganizerproject.entity.data_base.dao.TodoDAO;
@@ -11,11 +14,13 @@ import com.refactoring.noteorganizerproject.entity.shared_prefs.SharedPreference
 import com.refactoring.noteorganizerproject.todos.model.Todo;
 
 import com.refactoring.noteorganizerproject.todos.notifications.Alarm;
+import com.refactoring.noteorganizerproject.todos.notifications.NotificationHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
+import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -34,8 +39,8 @@ public class TodoDaoImpl {
     public enum STATE {
         ALL, DONE, MISSED, CURRENT;
     }
-
     private STATE showState = STATE.ALL;
+
     private Alarm alarm = AppConfig.getInstance().getAlarm();
 
     public void getTodosByState(BasePresenter presenter) {
@@ -55,6 +60,130 @@ public class TodoDaoImpl {
         }
     }
 
+    public void saveTodo(String title, String description, Long dateTime, BasePresenter presenter) {
+        Todo todo = new Todo();
+        todo.title = title;
+        todo.description = description;
+        todo.endDate = dateTime;
+        todo.createDate = System.currentTimeMillis();
+        todo.isDone = false;
+        todo.parentId = null;
+
+        insertTodo(todo, presenter);
+    }
+
+    public void saveTodo(Todo todo, BasePresenter presenter) {
+        insertTodo(todo, presenter);
+    }
+
+    private void insertTodo(Todo todo, BasePresenter presenter) {
+        disposable = todoDAO.insert(todo)
+                .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        id -> {
+                            startAlarmIfNecessary(todo, id);
+                            getTodosByState(presenter);
+                        },
+                        Throwable::printStackTrace
+                );
+    }
+
+    private void startAlarmIfNecessary(Todo todo, Long id) {
+        if (todo.endDate > 0L && !todo.isDone) {
+            alarm.startAlarm(todo.endDate, id);
+        } else {
+            alarm.cancelAlarm(id);
+        }
+    }
+
+    public void getTodo(long id, BasePresenter presenter) {
+        System.out.println("id = " + id);
+        disposable = todoDAO.getById(id)
+                .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        foundTodo -> {
+                            this.todo = foundTodo;
+                            presenter.notifyDatasetChanged(NO_MESSAGE);
+                        },
+                        Throwable::printStackTrace
+                );
+    }
+
+    /**
+     * Метод вывода notification с загруженными в него данными
+     * @param id
+     * @param notificationHelper
+     */
+    public void getTodo(long id, NotificationHelper notificationHelper) {
+        System.out.println("id = " + id);
+        disposable = todoDAO.getById(id)
+                .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        foundTodo -> {
+                            this.todo = foundTodo;
+                            NotificationCompat.Builder nb = notificationHelper.getChannelNotification(todo.title, todo.description);
+                            notificationHelper.getManager().notify((int)id, nb.build());
+                        },
+                        Throwable::printStackTrace
+                );
+    }
+
+    public void update(String title, String description, Long dateTime, BasePresenter presenter) {
+        todo.title = title;
+        todo.description = description;
+        todo.endDate = dateTime;
+
+        update(todo, presenter);
+    }
+
+    public void update(Todo todo, BasePresenter presenter) {
+        disposable = Completable.fromAction( () -> todoDAO.update(todo) )
+                .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        () -> {
+                            startAlarmIfNecessary(todo, todo.id);
+                            getTodosByState(presenter);
+                        },
+                        Throwable::printStackTrace
+                );
+    }
+
+    public void delete(BasePresenter presenter) {
+        disposable = Completable.fromAction( () -> todoDAO.delete(todo) )
+                .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        () -> {
+                            alarm.cancelAlarm(todo.id);
+                            getTodosByState(presenter);
+                        },
+                        Throwable::printStackTrace
+                );
+    }
+
+    public void getCacheSize(ParameterizedAction action) {
+        disposable = todoDAO.getCacheSize()
+                .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        doneTodosCount -> {
+                            System.out.println("GET");
+                            action.doAction("" + doneTodosCount);
+                        },
+                        Throwable::printStackTrace
+                );
+    }
+    public void cleanCacheSize(ParameterizedAction action) {
+        disposable = Completable.fromAction( () -> todoDAO.cleanCache() )
+                .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        () -> getCacheSize(action),
+                        Throwable::printStackTrace
+                );
+    }
+
+    /**
+     * Getting todos from data-source
+     * @param presenter, which has
+     */
     private void getAll(BasePresenter presenter) {
         disposable = todoDAO.getAll()
                 .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
@@ -67,7 +196,6 @@ public class TodoDaoImpl {
                         Throwable::printStackTrace
                 );
     }
-
     private void getDoneTodos(BasePresenter presenter) {
         disposable = todoDAO.getDoneTodos()
                 .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
@@ -81,7 +209,6 @@ public class TodoDaoImpl {
                         Throwable::printStackTrace
                 );
     }
-
     private void getMissedTodos(BasePresenter presenter) {
         long timeNow = System.currentTimeMillis();
         disposable = todoDAO.getMissedTodos(timeNow)
@@ -95,7 +222,6 @@ public class TodoDaoImpl {
                         Throwable::printStackTrace
                 );
     }
-
     private void getCurrentTodos(BasePresenter presenter) {
         long timeNow = System.currentTimeMillis();
         System.out.println(timeNow);
@@ -110,11 +236,10 @@ public class TodoDaoImpl {
                         Throwable::printStackTrace
                 );
     }
-
+    // todo comments here
     public Integer size() {
         return todoList.size();
     }
-
     public void setTodo(int position) {
         todo = todoList.get(position);
     }
@@ -125,17 +250,14 @@ public class TodoDaoImpl {
         showState = TodoDaoImpl.STATE.ALL;
         getTodosByState(presenter);
     }
-
     public void showDone(BasePresenter presenter) {
         showState = STATE.DONE;
         getTodosByState(presenter);
     }
-
     public void showCurrent(BasePresenter presenter) {
         showState = STATE.CURRENT;
         getTodosByState(presenter);
     }
-
     public void showMissed(BasePresenter presenter) {
         showState = STATE.MISSED;
         getTodosByState(presenter);
@@ -144,5 +266,5 @@ public class TodoDaoImpl {
     public SharedPreferencesManager getAppSettings() {
         return AppConfig.getInstance().getAppSettings();
     }
-
 }
+

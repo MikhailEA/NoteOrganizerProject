@@ -212,7 +212,7 @@ public class NoteDaoImpl implements INoteDao {
     public void syncDataWithStorage() {
         MigrationManager manager = new MigrationManager(getAppSettings());
         List<Note> notesFromStorage = manager.getNotesFromStorage();
-        disposable = noteDao.getAll()
+        disposable = noteDAO.getAll()
                 .subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
                 .subscribe(
                         list -> {
