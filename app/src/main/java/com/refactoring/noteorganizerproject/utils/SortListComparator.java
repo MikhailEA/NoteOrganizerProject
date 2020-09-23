@@ -21,28 +21,26 @@ public class SortListComparator {
         }
     }
 
+
     public static synchronized Comparator<Note> getDateComparator() {
-        synchronized (obj) {
-            if (dateComparator == null) {
-                dateComparator = new DateComparator();
-            }
-            return dateComparator;
+        if (dateComparator == null) {
+            dateComparator = new DateComparator();
         }
+        return dateComparator;
     }
 
     public static synchronized Comparator<Note> getNumberComparator() {
-        synchronized (obj) {
-            if (numberComparator == null) {
-                numberComparator = new NumberComparator();
-            }
-            return  numberComparator;
+        if (numberComparator == null) {
+            numberComparator = new NumberComparator();
         }
+        return numberComparator;
     }
 
     private static class NameComparator implements Comparator<Note> {
         @Override
         public int compare(Note o1, Note o2) {
             return o1.title.compareToIgnoreCase(o2.title);
+
         }
     }
 
@@ -59,4 +57,6 @@ public class SortListComparator {
             return Long.compare(o1.id, o2.id);
         }
     }
+
 }
+

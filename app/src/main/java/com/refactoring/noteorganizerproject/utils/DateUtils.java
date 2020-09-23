@@ -37,17 +37,18 @@ public class DateUtils {
         return date + " " + time;
     }
 
-    private static String getNormalizedTime(int hour, int minute) {
+    public static String getNormalizedTime(Integer hour, Integer min) {
         String hourS = makeTwoNumbersFromOne(hour);
-        String minuteS = makeTwoNumbersFromOne(minute);
-        return String.format(DATE_OUTPUT_FORMAT, hourS, minuteS);
+        String minS = makeTwoNumbersFromOne(min);
+
+        return String.format(TIME_OUTPUT_FORMAT, hourS, minS);
     }
 
-    private static String getNormalizedDate(int day, int month, int year) {
+    public static String getNormalizedDate(Integer day, Integer month, Integer year) {
         String dayS = makeTwoNumbersFromOne(day);
         String monthS = makeTwoNumbersFromOne(month + 1);
-        String yearsS = makeTwoNumbersFromOne(year);
-        return String.format(DATE_OUTPUT_FORMAT, dayS, monthS, yearsS);
+        String yearS = makeTwoNumbersFromOne(year);
+        return String.format(DATE_OUTPUT_FORMAT, dayS, monthS, yearS);
     }
 
     private static String makeTwoNumbersFromOne(Integer num) {

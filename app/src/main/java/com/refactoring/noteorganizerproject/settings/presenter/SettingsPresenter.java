@@ -9,6 +9,7 @@ import com.refactoring.noteorganizerproject.entity.data_base.impl.TodoDaoImpl;
 import com.refactoring.noteorganizerproject.entity.data_base.interract.INoteDao;
 import com.refactoring.noteorganizerproject.entity.shared_prefs.SharedPreferencesManager;
 import com.refactoring.noteorganizerproject.settings.view.ISettingsView;
+import com.refactoring.noteorganizerproject.utils.DateUtils;
 
 import java.io.File;
 
