@@ -297,24 +297,24 @@
                         android:layout_weight="5"
                         android:gravity="center"
                         >
-                        <ImageButton
-                            android:id="@+id/notes_cache_size_clean_btn"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:layout_gravity="center_vertical"
-                            android:background="?attr/selectableItemBackgroundBorderless"
-                            android:src="@drawable/outline_delete_24"
-                            android:contentDescription="@string/deleted_note_hint"
-                            android:layout_weight="0.5"/>
-                        <ImageButton
-                            android:id="@+id/info_notes_cache_size_clean_btn"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:layout_gravity="center_vertical"
-                            android:background="?attr/selectableItemBackgroundBorderless"
-                            android:src="@drawable/outline_info_24"
-                            android:contentDescription="@string/info_clean_notes_cashe"
-                            android:layout_weight="0.5"/>
+                    <ImageButton
+                        android:id="@+id/notes_cache_size_clean_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/outline_delete_24"
+                        android:contentDescription="@string/deleted_note_hint"
+                        android:layout_weight="0.5"/>
+                    <ImageButton
+                        android:id="@+id/info_notes_cache_size_clean_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/outline_info_24"
+                        android:contentDescription="@string/info_clean_notes_cashe"
+                        android:layout_weight="0.5"/>
                     </androidx.appcompat.widget.LinearLayoutCompat>
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -430,13 +430,13 @@
                             android:layout_height="wrap_content"
                             android:text="@string/migrate_notes_hint" />
 
-                        <TextView
-                            android:id="@+id/app_dir_path"
-                            style="@style/TextView.SubHeader"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:singleLine="false"
-                            android:text="@string/migrated_notes_dir_path_hint" />
+                            <TextView
+                                android:id="@+id/app_dir_path"
+                                style="@style/TextView.SubHeader"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:singleLine="false"
+                                android:text="@string/migrated_notes_dir_path_hint" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -497,12 +497,12 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <TextView
-                        style="@style/TextView.Header"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/help_hint"
-                        android:layout_weight="0.1"/>
+                        <TextView
+                            style="@style/TextView.Header"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/help_hint"
+                            android:layout_weight="0.1"/>
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"

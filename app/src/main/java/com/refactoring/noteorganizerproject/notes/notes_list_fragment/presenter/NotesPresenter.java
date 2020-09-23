@@ -18,8 +18,16 @@ import com.refactoring.noteorganizerproject.utils.SortListComparator;
 
 import java.util.Comparator;
 
-public class NotesPresenter implements INotesPresenter, INotesSortingPresenter {
+/**
+ * Base Notes Presenter
+ *
+ * Seems it has to implement BasePresenter interface and it should be given to Adapter class
+ * to interact with data.
+ *
+ * Generates sample data.
+ */
 
+public class NotesPresenter implements INotesPresenter, INotesSortingPresenter {
     private String CLASS_TAG = "RecyclerViewPresenter";
     private final int NEW_NOTE = -1;
     private final int NO_MESSAGE = 0;
@@ -52,7 +60,7 @@ public class NotesPresenter implements INotesPresenter, INotesSortingPresenter {
     @Override
     public void notifyDatasetChanged(int messageId) {
         if (messageId == NO_MESSAGE)
-            fragmentView.notifyDataChaged();
+            fragmentView.notifyDataChanged();
         else
             fragmentView.showToast(messageId);
     }
@@ -65,7 +73,9 @@ public class NotesPresenter implements INotesPresenter, INotesSortingPresenter {
     }
 
     @Override
-    public int getItemCount() { return noteDao.size(); }
+    public int getItemCount() {
+        return noteDao.size();
+    }
 
     @Override
     public void clicked(int position) {
@@ -74,7 +84,6 @@ public class NotesPresenter implements INotesPresenter, INotesSortingPresenter {
         else
             selectNote(position);
     }
-
     @Override
     public void createNewNote() {
         disableSort();
@@ -92,8 +101,7 @@ public class NotesPresenter implements INotesPresenter, INotesSortingPresenter {
         }
         fragmentView.viewNote();
     }
-
-    public void selectNote(int position) {
+    private void selectNote(int position) {
         Note note = noteDao.getNoteByPosition(position);
         noteDao.selectNote(note);
         fragmentView.setCardSelected(noteDao.wasSelected(note), position);
@@ -114,7 +122,6 @@ public class NotesPresenter implements INotesPresenter, INotesSortingPresenter {
         else
             noteDao.search(this, s);
     }
-
     @Override
     public void clearSearch() {
         fragmentView.clearSearch();
@@ -129,31 +136,11 @@ public class NotesPresenter implements INotesPresenter, INotesSortingPresenter {
         updateByState();
     }
 
-    private void changeStateTo(State newState) {
-        state = newState;
-    }
-
-    private void updateByState() {
-        if (state == State.SINGLE_SELECTION) {
-            noteDao.clearSelected();
-        }
-    }
-
-    public void unsubscribe() {
-        noteDao.unsubscribe();
-    }
-
-
-
     @Override
     public void disableSort() {
         fragmentView.setSortLayoutVisibility(false);
-        changeStateTo(state.SINGLE_SELECTION);
+        changeStateTo(State.SINGLE_SELECTION);
         updateByState();
-    }
-
-    public void sort() {
-        noteDao.sortNotes(this, comparator);
     }
 
     @Override
@@ -174,6 +161,10 @@ public class NotesPresenter implements INotesPresenter, INotesSortingPresenter {
         sort();
     }
 
+    private void sort() {
+        noteDao.sortNotes(this, comparator);
+    }
+
     @Override
     public void enableMultiSelection() {
         disableSort();
@@ -187,6 +178,20 @@ public class NotesPresenter implements INotesPresenter, INotesSortingPresenter {
         changeStateTo(State.SINGLE_SELECTION);
         fragmentView.setCardsToDefaultStyle();
         updateByState();
+    }
+
+    private void changeStateTo(State newState) {
+        state = newState;
+    }
+    private void updateByState() {
+        if (state == State.SINGLE_SELECTION) {
+            noteDao.clearSelected();
+        }
+    }
+
+
+    public void unsubscribe() {
+        noteDao.unsubscribe();
     }
 
     @Override
@@ -211,25 +216,7 @@ public class NotesPresenter implements INotesPresenter, INotesSortingPresenter {
     }
 
     @Override
-    public RecyclerView.OnScrollListener getRecyclerScrollListener(FloatingActionButton fab) {
+    public RecyclerView.OnScrollListener getRecyclerScrollListener(FloatingActionButton fab){
         return listenersProvider.getRecyclerScrollListener(fab);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
