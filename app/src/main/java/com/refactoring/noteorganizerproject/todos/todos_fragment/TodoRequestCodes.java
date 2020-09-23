@@ -1,4 +1,4 @@
-package com.refactoring.noteorganizerproject.todos.todos_faragment;
+package com.refactoring.noteorganizerproject.todos.todos_fragment;
 
 public interface TodoRequestCodes {
     int REQUEST_NEW_TODO = 1;

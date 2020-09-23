@@ -1,9 +1,12 @@
-package com.refactoring.noteorganizerproject.todos.todos_faragment.presenter;
+package com.refactoring.noteorganizerproject.todos.todos_fragment.presenter;
 
 import com.refactoring.noteorganizerproject.entity.data_base.impl.TodoDaoImpl;
 import com.refactoring.noteorganizerproject.entity.shared_prefs.SharedPreferencesManager;
-import com.refactoring.noteorganizerproject.todos.todos_faragment.TodoRequestCodes;
-import com.refactoring.noteorganizerproject.todos.todos_faragment.view.ITodosFragment;
+import com.refactoring.noteorganizerproject.notes.notes_list_fragment.view.recycler.IViewHolder;
+import com.refactoring.noteorganizerproject.todos.model.Todo;
+import com.refactoring.noteorganizerproject.todos.todos_fragment.TodoRequestCodes;
+import com.refactoring.noteorganizerproject.todos.todos_fragment.view.ITodosFragment;
+import com.refactoring.noteorganizerproject.utils.DateUtils;
 
 import moxy.InjectViewState;
 import moxy.MvpPresenter;

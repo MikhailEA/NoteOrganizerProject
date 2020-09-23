@@ -1,4 +1,4 @@
-package com.refactoring.noteorganizerproject.todos.todos_faragment.view;
+package com.refactoring.noteorganizerproject.todos.todos_fragment.view;
 
 import moxy.MvpView;
 import moxy.viewstate.strategy.AddToEndSingleStrategy;

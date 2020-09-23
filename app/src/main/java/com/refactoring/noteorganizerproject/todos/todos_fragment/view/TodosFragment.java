@@ -17,10 +17,10 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.refactoring.noteorganizerproject.R;
-import com.refactoring.noteorganizerproject.todos.todos_faragment.TodoRequestCodes;
-import com.refactoring.noteorganizerproject.todos.todos_faragment.presenter.TodosPresenter;
-import com.refactoring.noteorganizerproject.todos.todos_faragment.view.ITodosFragment;
-import com.refactoring.noteorganizerproject.todos.todos_faragment.view.recycler.TodosRecyclerAdapter;
+import com.refactoring.noteorganizerproject.todos.add_todo_fragment.view.AddTodoBottomFragment;
+import com.refactoring.noteorganizerproject.todos.todos_fragment.TodoRequestCodes;
+import com.refactoring.noteorganizerproject.todos.todos_fragment.presenter.TodosPresenter;
+import com.refactoring.noteorganizerproject.todos.todos_fragment.view.recycler.TodosRecyclerAdapter;
 
 import moxy.MvpAppCompatFragment;
 import moxy.presenter.InjectPresenter;

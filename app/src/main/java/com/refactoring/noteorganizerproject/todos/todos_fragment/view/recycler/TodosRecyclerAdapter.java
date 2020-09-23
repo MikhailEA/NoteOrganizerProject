@@ -1,4 +1,4 @@
-package com.refactoring.noteorganizerproject.todos.todos_faragment.view.recycler;
+package com.refactoring.noteorganizerproject.todos.todos_fragment.view.recycler;
 
 import android.graphics.Color;
 import android.text.Editable;
@@ -10,9 +10,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.checkbox.MaterialCheckBox;
+import com.refactoring.noteorganizerproject.R;
+import com.refactoring.noteorganizerproject.todos.model.Todo;
+import com.refactoring.noteorganizerproject.todos.todos_fragment.presenter.ITodoPresenter;
+import com.refactoring.noteorganizerproject.utils.DateUtils;
+
+import java.util.List;
 
 /**
  * Base Adapter for recycler.
@@ -43,8 +50,8 @@ public class TodosRecyclerAdapter extends RecyclerView.Adapter<TodosRecyclerAdap
     }
 
     @Override
-    public void onBindViewHolder(TodosViewHolder holder, int position) {
-        presenter.bindView(holder);
+    public void onBindViewHolder(@NonNull TodosViewHolder holder, int position) {
+        super.onBindViewHolder(holder);
     }
 
     @Override
@@ -67,7 +74,7 @@ public class TodosRecyclerAdapter extends RecyclerView.Adapter<TodosRecyclerAdap
 
             init();
             itemView.setOnClickListener(v -> presenter.clicked(getPos()));
-            itemView.setOnLongClickListener(v -> {
+            itemView.setOnLongClickListener( v -> {
                 presenter.longClicked(getPos());
                 return true;
             });
@@ -81,7 +88,6 @@ public class TodosRecyclerAdapter extends RecyclerView.Adapter<TodosRecyclerAdap
             dateEnd = itemView.findViewById(R.id.todo_date_end);
             checkBoxDone = itemView.findViewById(R.id.todo_item_checkbox);
         }
-
         @Override
         public void setTodo(Todo todo) {
             setDate(todo.endDate);
@@ -89,11 +95,8 @@ public class TodosRecyclerAdapter extends RecyclerView.Adapter<TodosRecyclerAdap
             setTitle(todo.title, todo.isDone);
             setBackground(todo);
         }
-
         @Override
-        public int getPos() {
-            return getLayoutPosition();
-        }
+        public int getPos() { return getLayoutPosition(); }
 
         private void setDate(Long endDate) {
             if (DateUtils.isDateConfigured(endDate)) {
@@ -103,7 +106,6 @@ public class TodosRecyclerAdapter extends RecyclerView.Adapter<TodosRecyclerAdap
                 dateEnd.setVisibility(View.GONE);
             }
         }
-
         private void setTitle(String title_, boolean isDone) {
             Editable e = new SpannableStringBuilder(title_);
             if (isDone) {
@@ -132,3 +134,4 @@ public class TodosRecyclerAdapter extends RecyclerView.Adapter<TodosRecyclerAdap
         }
     }
 }
+
