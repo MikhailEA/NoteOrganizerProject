@@ -1,4 +1,4 @@
-package ru.reliableteam.noteorganizer.todos.notifications;
+package com.refactoring.noteorganizerproject.todos.notifications;
 
 import android.annotation.TargetApi;
 import android.app.Notification;
@@ -10,7 +10,7 @@ import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
-import ru.reliableteam.noteorganizer.R;
+import com.refactoring.noteorganizerproject.R;
 
 /**
  * Класс NotificationHelper описывает свойства уведомления.

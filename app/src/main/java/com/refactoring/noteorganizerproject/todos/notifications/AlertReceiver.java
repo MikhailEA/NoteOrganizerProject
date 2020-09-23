@@ -1,11 +1,11 @@
-package ru.reliableteam.noteorganizer.todos.notifications;
+package com.refactoring.noteorganizerproject.todos.notifications;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
 import androidx.core.app.NotificationCompat;
-import ru.reliableteam.noteorganizer.entity.data_base.impl.TodoDaoImpl;
+import com.refactoring.noteorganizerproject.entity.data_base.impl.TodoDaoImpl;
 
 /**Этот класс описывает порядок действий при выводе уведомлений.
  * Используется только в момент вывода уведомления.
