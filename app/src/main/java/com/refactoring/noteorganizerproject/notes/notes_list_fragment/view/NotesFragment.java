@@ -17,7 +17,9 @@ import com.google.android.material.card.MaterialCardView;
 import com.refactoring.noteorganizerproject.R;
 import com.refactoring.noteorganizerproject.notes.single_note_activity.view.SingleNoteActivity;
 
-
+/**
+ *  Note List Fragment
+ */
 public class NotesFragment extends NotesFragmentInitialize {
     private final String CLASS_TAG = "NotesFragment";
 
