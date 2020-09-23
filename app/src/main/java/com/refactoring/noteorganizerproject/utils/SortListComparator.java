@@ -1,4 +1,4 @@
-package com.refactoring.noteorganizerproject.utils.;
+package com.refactoring.noteorganizerproject.utils;
 
 import com.refactoring.noteorganizerproject.notes.model.Note;
 
