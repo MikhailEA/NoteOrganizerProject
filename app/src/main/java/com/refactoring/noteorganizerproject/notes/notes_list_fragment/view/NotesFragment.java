@@ -30,13 +30,6 @@ public class NotesFragment extends NotesFragmentInitialize {
         return root;
     }
 
-    public void notifyDataChaged() {
-        RecyclerView.Adapter adapter = recyclerView.getAdapter();
-        if (adapter != null)
-            adapter.notifyDataSetChanged();
-    }
-
-
     public void notifyDataChanged() {
         RecyclerView.Adapter adapter = recyclerView.getAdapter();
         if (adapter != null)
