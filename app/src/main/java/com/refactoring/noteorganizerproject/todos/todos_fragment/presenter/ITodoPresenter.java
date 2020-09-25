@@ -1,7 +1,8 @@
 package com.refactoring.noteorganizerproject.todos.todos_fragment.presenter;
 
 import com.refactoring.noteorganizerproject.BasePresenter;
-import com.refactoring.noteorganizerproject.notes.notes_list_fragment.view.recycler.IViewHolder;
+import com.refactoring.noteorganizerproject.todos.todos_fragment.view.recycler.IViewHolder;
+
 
 public interface ITodoPresenter extends BasePresenter {
     void getTodos();

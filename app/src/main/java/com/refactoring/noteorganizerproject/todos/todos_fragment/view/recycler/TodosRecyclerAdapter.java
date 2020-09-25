@@ -50,9 +50,11 @@ public class TodosRecyclerAdapter extends RecyclerView.Adapter<TodosRecyclerAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TodosViewHolder holder, int position) {
-        super.onBindViewHolder(holder);
+    public void onBindViewHolder(TodosViewHolder holder, int position) {
+        presenter.bindView(holder);
     }
+
+
 
     @Override
     public int getItemViewType(int position) {
